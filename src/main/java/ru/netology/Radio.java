@@ -44,25 +44,24 @@ public class Radio {
         return numberStation;
     }
 
-    public void increaseVolume () {
-        if (volume >= maxVolume) {
+    public void increaseVolume() {
+        if (volume < maxVolume) {
+            volume += 1;
+        } else {
             setVolume(minVolume);
-        } else {
-            volume = volume + 1;
         }
     }
 
-
-    public void decreaseVolume () {
-        if (minVolume >= volume ) {
+    public void decreaseVolume() {
+        if (volume >= minVolume) {
+            volume -= 1;
+        } else {
             setVolume(maxVolume);
-        } else {
-            volume=volume-1;
         }
     }
 
-        public void setVolume(int volume) {
-        if (volume < minVolume) {
+    public void megaSetVolume(int volume) {
+        if (volume <= minVolume) {
             return;
         }
         if (volume > getMaxVolume()) {
@@ -88,9 +87,6 @@ public class Radio {
         this.minNumberStation = minNumberStation;
     }
 
-    public int getVolume() {
-        return volume;
-    }
 
     public int getMaxVolume() {
         return maxVolume;
@@ -108,4 +104,11 @@ public class Radio {
         this.minVolume = minVolume;
     }
 
+    public void setVolume(int volume) {
+        this.volume = volume;
+    }
+
+    public int getVolume() {
+        return volume;
+    }
 }
