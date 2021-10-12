@@ -27,7 +27,7 @@ public class RadioTest {
     @Test
     void increaseVolumeMax() {
         radio.increaseVolume();
-       // radio.setVolume(100);
+        radio.setVolume(100);
         radio.setVolume(105);
 
         assertEquals(105, radio.getVolume());
@@ -84,23 +84,29 @@ public class RadioTest {
 
     @Test
     void megaSetVolumeMoreMax() {
-        radio.megaSetVolume(0);
-        radio.setVolume(102);
+        radio.megaSetVolume(102);
+        radio.setVolume(98);
         assertEquals(100, radio.getMaxVolume());
-        assertEquals(102, radio.getVolume());
+        assertEquals(98, radio.getVolume());
     }
 
     @Test
     void megaSetMaxVolume() {
         radio.megaSetVolume(0);
-        radio.setMaxVolume(100);
+        radio.setVolume(108);
         assertEquals(100, radio.getMaxVolume());
+    }
+
+    @Test
+    void megaSetVolumeMinreturn() {
+        radio.megaSetVolume(-1);
+        assertEquals(0, radio.getMinVolume());
     }
 
     @Test
     void megaSetMinVolume() {
         radio.megaSetVolume(0);
-        radio.setMinVolume(0);
+        radio.setVolume(-1);
         assertEquals(0, radio.getMinVolume());
     }
 
@@ -214,3 +220,4 @@ public class RadioTest {
         assertEquals(10, radio.getNumberStation());
     }
 }
+
