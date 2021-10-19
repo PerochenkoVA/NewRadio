@@ -10,7 +10,7 @@ public class RadioTest {
 
     @Test
     void increaseVolumeMoreMax() {
-        radio.increaseVolume();
+        radio.increaseVolume(101);
         radio.setVolume(101);
 
         assertEquals(100, radio.getMaxVolume());
@@ -18,7 +18,8 @@ public class RadioTest {
 
     @Test
     void increaseVolume() {
-        radio.increaseVolume();
+        radio.increaseVolume(5);
+        radio.setMaxVolume(100);
         radio.setVolume(5);
 
         assertEquals(5, radio.getVolume());
@@ -26,7 +27,7 @@ public class RadioTest {
 
     @Test
     void increaseVolumeMax() {
-        radio.increaseVolume();
+        radio.increaseVolume(105);
         radio.setVolume(100);
         radio.setVolume(105);
 
@@ -35,28 +36,38 @@ public class RadioTest {
 
     @Test
     void increaseVolumeMin() {
-        radio.increaseVolume();
+        radio.increaseVolume(0);
         radio.setVolume(0);
         assertEquals(0, radio.getVolume());
     }
 
     @Test
     void increaseVolumeMinElse() {
-        radio.increaseVolume();
+        radio.increaseVolume(101);
         radio.setVolume(101);
         assertEquals(101, radio.getVolume());
     }
 
     @Test
+    void increaseVolumeIf() {
+        radio.increaseVolume(105);
+        radio.setMaxVolume(100);
+        radio.setVolume(105);
+        assertEquals(105,radio.getVolume());
+    }
+
+    @Test
     void decreaseVolumeMoreMax() {
-        radio.decreaseVolume();
+        radio.decreaseVolume(106);
+        radio.setMinVolume(0);
         radio.setVolume(106);
         assertEquals(106, radio.getVolume());
     }
 
     @Test
     void decreaseVolume() {
-        radio.decreaseVolume();
+        radio.decreaseVolume(55);
+        radio.setMinVolume(0);
         radio.setVolume(55);
 
         assertEquals(55, radio.getVolume());
@@ -64,7 +75,8 @@ public class RadioTest {
 
     @Test
     void decreaseVolumeMax() {
-        radio.decreaseVolume();
+        radio.decreaseVolume(100);
+        radio.setMinVolume(0);
         radio.setMaxVolume(100);
         radio.setVolume(100);
 
@@ -74,7 +86,8 @@ public class RadioTest {
 
     @Test
     void decreaseVolumeMin() {
-        radio.decreaseVolume();
+        radio.decreaseVolume(0);
+        radio.setMinVolume(0);
         radio.setVolume(0);
 
         assertEquals(0, radio.getVolume());

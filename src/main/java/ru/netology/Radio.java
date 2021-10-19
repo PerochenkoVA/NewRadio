@@ -44,16 +44,18 @@ public class Radio {
         return numberStation;
     }
 
-    public void increaseVolume() {
+    public void increaseVolume(int volume) {
         if (volume < maxVolume) {
             volume += 1;
         }
+         this.volume=minVolume;
     }
 
-    public void decreaseVolume() {
-        if (volume >= minVolume) {
+    public void decreaseVolume(int volume) {
+        if (volume > minVolume) {
             volume -= 1;
         }
+        this.volume=maxVolume;
     }
 
     public void megaSetVolume(int volume) {
@@ -94,6 +96,9 @@ public class Radio {
 
     public int getMinVolume() {
         return minVolume;
+    }
+    public void setMinVolume(int minVolume) {
+        this.minVolume = minVolume;
     }
 
     public void setVolume(int volume) {
