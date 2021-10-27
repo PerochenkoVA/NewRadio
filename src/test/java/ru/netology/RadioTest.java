@@ -9,125 +9,80 @@ public class RadioTest {
     Radio radio = new Radio();
 
     @Test
-    void increaseVolumeMoreMax() {
-        radio.increaseVolume(101);
-        radio.setVolume(101);
-
-        assertEquals(100, radio.getMaxVolume());
+    public void increaseVolumeMoreMax() {
+        radio.setVolume(500);
+        radio.increaseVolume();
+        assertEquals(0, radio.getVolume());
     }
 
     @Test
     void increaseVolume() {
-        radio.increaseVolume(5);
-        radio.setMaxVolume(100);
         radio.setVolume(5);
-
-        assertEquals(5, radio.getVolume());
-    }
-
-    @Test
-    void increaseVolumeMax() {
-        radio.increaseVolume(105);
-        radio.setVolume(100);
-        radio.setVolume(105);
-
-        assertEquals(105, radio.getVolume());
+        radio.increaseVolume();
+        assertEquals(6, radio.getVolume());
     }
 
     @Test
     void increaseVolumeMin() {
-        radio.increaseVolume(0);
         radio.setVolume(0);
-        assertEquals(0, radio.getVolume());
-    }
-
-    @Test
-    void increaseVolumeMinElse() {
-        radio.increaseVolume(101);
-        radio.setVolume(101);
-        assertEquals(101, radio.getVolume());
-    }
-
-    @Test
-    void increaseVolumeIf() {
-        radio.increaseVolume(105);
-        radio.setMaxVolume(100);
-        radio.setVolume(105);
-        assertEquals(105,radio.getVolume());
+        radio.increaseVolume();
+        assertEquals(1, radio.getVolume());
     }
 
     @Test
     void decreaseVolumeMoreMax() {
-        radio.decreaseVolume(106);
-        radio.setMinVolume(0);
         radio.setVolume(106);
-        assertEquals(106, radio.getVolume());
+        radio.decreaseVolume();
+        assertEquals(105, radio.getVolume());
     }
 
     @Test
     void decreaseVolume() {
-        radio.decreaseVolume(55);
-        radio.setMinVolume(0);
-        radio.setVolume(55);
-
-        assertEquals(55, radio.getVolume());
+        radio.setVolume(0);
+        radio.decreaseVolume();
+        assertEquals(100, radio.getVolume());
     }
 
     @Test
     void decreaseVolumeMax() {
-        radio.decreaseVolume(100);
-        radio.setMinVolume(0);
-        radio.setMaxVolume(100);
-        radio.setVolume(100);
-
+        radio.setVolume(-1);
+        radio.decreaseVolume();
         assertEquals(100, radio.getVolume());
-        assertEquals(100, radio.getMaxVolume());
+
     }
-
-    @Test
-    void decreaseVolumeMin() {
-        radio.decreaseVolume(0);
-        radio.setMinVolume(0);
-        radio.setVolume(0);
-
-        assertEquals(0, radio.getVolume());
-        assertEquals(0, radio.getMinVolume());
-    }
-
 
     @Test
     void megaSetVolumeMoreMax() {
         radio.megaSetVolume(102);
         radio.setVolume(98);
-        assertEquals(100, radio.getMaxVolume());
         assertEquals(98, radio.getVolume());
     }
 
     @Test
     void megaSetMaxVolume() {
-        radio.megaSetVolume(0);
         radio.setVolume(108);
-        assertEquals(100, radio.getMaxVolume());
+        radio.megaSetVolume(0);
+        assertEquals(0, radio.getVolume());
     }
 
     @Test
     void megaSetVolumeMinreturn() {
         radio.megaSetVolume(-1);
-        assertEquals(0, radio.getMinVolume());
+        assertEquals(0, radio.getVolume());
     }
 
     @Test
     void megaSetMinVolume() {
-        radio.megaSetVolume(0);
         radio.setVolume(-1);
-        assertEquals(0, radio.getMinVolume());
+        radio.megaSetVolume(0);
+        assertEquals(0, radio.getVolume());
     }
 
     @Test
     void megaSetVolumeVegative() {
-        radio.megaSetVolume(0);
         radio.setVolume(-1);
-        assertEquals(-1, radio.getVolume());
+        radio.megaSetVolume(0);
+        assertEquals(0, radio.getVolume());
     }
 
     @Test
@@ -172,11 +127,9 @@ public class RadioTest {
     void prevNumberStationLowMin() {
         radio.setNumberStation(-5);
         radio.setMinNumberStation(0);
-
         assertEquals(0, radio.getNumberStation());
         assertEquals(0, radio.getMinNumberStation());
     }
-
 
     @Test
     void nextNumberStationLowMin() {
